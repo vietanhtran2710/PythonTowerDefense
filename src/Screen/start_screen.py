@@ -6,6 +6,7 @@ class StartScreen(Screen):
         self.on_display = True
         self.width, self.height = x, y
         self.start_button_on_hover, self.load_button_on_hover = False, False
+        self.switched, self.load = False, False
 
         path = ["./../res/res/GFX/GUI/Background/Background_main_screen.jpg",
                 "./../res/res/GFX/GUI/Button/button.png",
@@ -37,7 +38,17 @@ class StartScreen(Screen):
         self.load_button.draw()
 
     def mouse_clicked(self, x, y):
-        
+        print("called")
+        if self.start_button_on_hover:
+            self.on_display, self.switched = False, True
+            print("clicked")
+        elif self.load_button_on_hover:
+            try:
+                with open("save_data.txt", "r") as f:
+                    self.on_display, self.switched = False, True
+                    self.load = True
+            except FileNotFoundError:
+                pass
 
     def on_mouse_motion(self, x, y):
         if self.on_hover(x, y, self.start_button):
