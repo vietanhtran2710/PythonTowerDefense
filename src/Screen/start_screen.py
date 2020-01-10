@@ -9,11 +9,6 @@ class StartScreen(Screen):
         self.start_button_on_hover, self.load_button_on_hover = False, False
         self.switched, self.load = False, False
 
-        explosion = pyglet.image.load('../res/res/GFX/Game/Tilemap/Spawner/EnemyHouse.png')
-        explosion_seq = pyglet.image.ImageGrid(explosion, 1, 4)
-        ani = pyglet.image.Animation.from_image_sequence(explosion_seq, 0.1)
-        self.sp = pyglet.sprite.Sprite(ani)
-
         path = ["./../res/res/GFX/GUI/Background/Background_main_screen.jpg",
                 "./../res/res/GFX/GUI/Button/button.png",
                 "./../res/res/GFX/GUI/Button/button-selected.png",
@@ -42,7 +37,6 @@ class StartScreen(Screen):
         self.background.draw()
         self.start_button.draw()
         self.load_button.draw()
-        self.sp.draw()
 
     def mouse_clicked(self, x, y):
         if self.start_button_on_hover:

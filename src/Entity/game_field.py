@@ -1,4 +1,5 @@
 from Utils.texture import Texture
+from Utils.animation import Animation
 
 class GameField(object):
     def __init__(self):
@@ -36,7 +37,7 @@ class GameField(object):
                     if item == "0":
                         pass
                     elif item == "9":
-                        self.road.append(Texture(self.images_path[0], col * 48, (len(grid) - row + 2) * 48))
+                        self.road.append(Animation(self.images_path[0], 1, 4, 0.1, col *48, (len(grid) - row + 2) * 48))
                     elif item == "8":
                         self.road.append(Texture(self.images_path[-1], col * 48, (len(grid) - row + 2) * 48))
                     else:
