@@ -1,5 +1,6 @@
 from Utils.texture import Texture
 from Screen.screen import Screen
+import pyglet
 
 class StartScreen(Screen):
     def __init__(self, x, y):
@@ -7,6 +8,11 @@ class StartScreen(Screen):
         self.width, self.height = x, y
         self.start_button_on_hover, self.load_button_on_hover = False, False
         self.switched, self.load = False, False
+
+        explosion = pyglet.image.load('../res/res/GFX/Game/Tilemap/Spawner/EnemyHouse.png')
+        explosion_seq = pyglet.image.ImageGrid(explosion, 1, 4)
+        ani = pyglet.image.Animation.from_image_sequence(explosion_seq, 0.1)
+        self.sp = pyglet.sprite.Sprite(ani)
 
         path = ["./../res/res/GFX/GUI/Background/Background_main_screen.jpg",
                 "./../res/res/GFX/GUI/Button/button.png",
@@ -36,12 +42,11 @@ class StartScreen(Screen):
         self.background.draw()
         self.start_button.draw()
         self.load_button.draw()
+        self.sp.draw()
 
     def mouse_clicked(self, x, y):
-        print("called")
         if self.start_button_on_hover:
             self.on_display, self.switched = False, True
-            print("clicked")
         elif self.load_button_on_hover:
             try:
                 with open("save_data.txt", "r") as f:

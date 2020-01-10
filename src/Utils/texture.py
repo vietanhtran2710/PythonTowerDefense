@@ -2,11 +2,12 @@ import pyglet
 
 class Texture(object):
     def __init__(self, *args):
+        print(len(args))
         if len(args) == 1:
             path = args[0]
             self.image = pyglet.image.load(path)
             self.sprite = pyglet.sprite.Sprite(self.image)
-        elif len(args) == 4:
+        elif len(args) == 3:
             path, x, y = args[0], args[1], args[2]
             self.image = pyglet.image.load(path)
             self.sprite = pyglet.sprite.Sprite(self.image)
